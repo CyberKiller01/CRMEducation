@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class Contact {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contact_id;
 
     @Column(name = "country")

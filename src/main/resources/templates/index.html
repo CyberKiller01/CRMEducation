@@ -11,36 +11,39 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../offcanvas.css" rel="stylesheet">
     <title></title>
 </head>
-<body class="container">
+<body class="container bg-light">
 
-<table class="table table-dark">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Build</th>
-        <th scope="col">Log</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="build,iterStat:${builds}">
-        <td th:text="${build.getId()}" scope="row">№</td>
-        <td><a th:href="|/download/build/${build.getId()}|" class="btn btn-primary " role="button"
-               th:text="'Download ' + ${build.getId()}">Download</a></td>
-        <td><a th:href="|/download/log/${build.getId()}|" class="btn btn-info disabled"
-               th:class="${build.getStarted()}? 'btn btn-info':'btn btn-info disabled'" role="button"
-               th:text="'Log ' + ${build.getId()}">Log</a></td>
-        <td>
-            <a th:if="${build.getLive() == false}" th:href="|/deploy/${build.getId()}|" class="btn btn-success"
-               role="button" th:text="Deploy">Deploy</a>
-            <a th:unless="${build.getLive() == false}" th:href="|/stop/${build.getId()}|" class="btn btn-danger"
-               role="button" th:text="Stop">Stop</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+
+<div class="row  mb-1">
+    <button type="button" class="btn btn-success">New</button>
+</div>
+
+<div class="row">
+    <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">City</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="org,iterStat:${orgs}" th:data1="${org.getName()}"
+            th:onclick="window.location.href='/show/'+this.getAttribute('data1'); return false" scope="row">
+            <td th:text="${org.getName()}">№</td>
+            <td th:text="${org.getContact().getCity()}"></td>
+            <td th:text="${org.getContact().getTelephone()}"></td>
+            <td></td>
+        </tr>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 
 </body>
 </html>

@@ -17,6 +17,7 @@ import java.util.List;
 public class OperationInformation {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long op_id;
 
     @ElementCollection
