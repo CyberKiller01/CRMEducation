@@ -21,7 +21,7 @@ public class OrganisationService {
     }
 
     @PostConstruct
-    private void initDB(){
+    private void initDB() {
         List<Organisation> organisations = new ArrayList<>();
         organisations.add(Organisation.builder()
                 .name("Yandex")
@@ -32,12 +32,12 @@ public class OrganisationService {
                         .telephone("+79631111111")
                         .build())
                 .operationInformation(OperationInformation.builder()
-                        .acquired(new ArrayList<String>(Arrays.asList("Uber")))
-                        .hiring(new ArrayList<String>(Arrays.asList("Java Developers")))
-                        .sale(new ArrayList<String>(Arrays.asList("Yandex.Eda")))
+                        .acquired(Collections.singletonList("Uber"))
+                        .hiring(Collections.singletonList("Java Developers"))
+                        .sale(Collections.singletonList("Yandex.Eda"))
                         .build())
-                .actions(new ArrayList<String>(Arrays.asList("Software","Delivering")))
-                .nameOfProduct(new ArrayList<String>(Arrays.asList("Yandex.Eda","Yandex.Taxi","Yandex.Cloud")))
+                .actions(Arrays.asList("Software", "Delivering"))
+                .nameOfProduct(Arrays.asList("Yandex.Eda", "Yandex.Taxi", "Yandex.Cloud"))
                 .build());
 
         organisations.add(Organisation.builder()
@@ -49,27 +49,27 @@ public class OrganisationService {
                         .telephone("+79631111111")
                         .build())
                 .operationInformation(OperationInformation.builder()
-                        .acquired(new ArrayList<String>(Collections.singletonList("Uber")))
-                        .hiring(new ArrayList<String>(Collections.singletonList("Java Developers")))
-                        .sale(new ArrayList<String>(Collections.singletonList("Yandex.Eda")))
+                        .acquired(Collections.singletonList("Uber"))
+                        .hiring(Collections.singletonList("Java Developers"))
+                        .sale(Collections.singletonList("Yandex.Eda"))
                         .build())
-                .actions(new ArrayList<String>(Arrays.asList("Software","Delivering")))
-                .nameOfProduct(new ArrayList<String>(Arrays.asList("Yandex.Eda","Yandex.Taxi","Yandex.Cloud")))
+                .actions(Arrays.asList("Software", "Delivering"))
+                .nameOfProduct(Arrays.asList("Yandex.Eda", "Yandex.Taxi", "Yandex.Cloud"))
                 .build());
 
 
         organisationRepo.saveAll(organisations);
     }
 
-    public void addNewOrganisation(Organisation organisation){
+    public void addNewOrganisation(Organisation organisation) {
         organisationRepo.save(organisation);
     }
 
-    public Optional<Organisation> getOne(String name){
+    public Optional<Organisation> getOne(String name) {
         return organisationRepo.findById(name);
     }
 
-    public List<Organisation> getAllOrganisation(){
+    public List<Organisation> getAllOrganisation() {
         return organisationRepo.findAll();
     }
 }
