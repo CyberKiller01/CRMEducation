@@ -1,5 +1,7 @@
 package com.etu.crm.demo.controller;
 
+import com.etu.crm.demo.dto.OrgFormDTO;
+import com.etu.crm.demo.mapper.OrganisationMapper;
 import com.etu.crm.demo.service.OrganisationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,13 @@ public class MainController {
     public String showOrg(Model model, @PathVariable String name){
         model.addAttribute("org",organisationService.getOne(name).orElseThrow(RuntimeException::new));
         return "show";
+    }
+
+    @GetMapping("/edit/{name}")
+    public String editOrg(Model model, @PathVariable String name){
+        OrgFormDTO orgFormDTO = OrganisationMapper.organisationToDTO(organisationService.getOne(name).orElseThrow(RuntimeException::new));
+        model.addAttribute("org",orgFormDTO);
+        return "edit";
     }
 
 
